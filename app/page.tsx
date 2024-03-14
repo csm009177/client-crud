@@ -1,8 +1,11 @@
+// app\page.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
 import CreateData from './comp/CreateData';
 import { DatasContext } from './context/CRUDContext';
+import ReadData from "./comp/ReadData";
+import UseData from "./comp/UseData";
 
 
 export default function Home() {
@@ -12,6 +15,8 @@ export default function Home() {
     <main>
       <DatasContext.Provider value={{datas, setDatas}}>
         <CreateData/>
+        <ReadData/>
+        {/* <UseData/> */}
       </DatasContext.Provider>
     </main>
   );

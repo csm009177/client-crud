@@ -1,11 +1,10 @@
-"use client";
+// app\comp\CreateData.tsx
 import React, { useContext, useState } from "react";
 import { DatasContext } from "../context/CRUDContext";
 
 const CreateData: React.FC = () => {
   const [input, setInput] = useState("");
-  // const [datas, setDatas] = useState<string[]>([]);
-  const {datas, setDatas} = useContext(DatasContext)
+  const { setDatas } = useContext(DatasContext);
 
   // 입력 양식 변경 핸들러
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +29,7 @@ const CreateData: React.FC = () => {
         value={input}
         onChange={handleInputChange}
       />
-      <button type="submit">submit</button>
-      {datas.map((data, index) => {
-        return <div key={index}>{data}</div>;
-      })}
+      <button type="submit">submit</button> {/* form 제출 버튼 */}
     </form>
   );
 };
