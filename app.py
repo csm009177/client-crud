@@ -43,9 +43,24 @@ def get_all_data():
     return database
 
 def save_to_json(data):
-    with open("data.json", "w") as json_file:
-        json.dump(data, json_file)
+    with open("data.json", "w", encoding='utf-8') as json_file:
+        json.dump(data, json_file, ensure_ascii=False)
 
+@app.put("/update/{id}")
+def update_data(id: int, data: dict):
+    if id < 0 or id >= len(database):
+        raise HTTPException(status_code=404, detail="Item not found")
+    database[id] = data
+    save_to_json(database)
+    return {"message": "Data updated successfully"}
+
+@app.delete("/delete/{id}")
+def delete_data(id: int):
+    if id < 0 or id >= len(database):
+        raise HTTPException(status_code=404, detail="Item not found")
+    database.pop(id)
+    save_to_json(database)
+    return {"message": "Data deleted successfully"}
 
 
 # FastAPI 서버 실행

@@ -8,6 +8,7 @@ import ReadData from "./comp/ReadData";
 import UseData from "./comp/UseData";
 import DeleteData from "./comp/DeleteData";
 import AllCRUD from './comp/AllCRUD';
+import TestData from './comp/TestData';
 
 
 export default function Home() {
@@ -16,11 +17,12 @@ export default function Home() {
   return (
     <main>
       <DatasContext.Provider value={{datas, setDatas}}>
-        {/* <CreateData/>
+        <CreateData/>
         <ReadData/>
-        <UseData/>
-        <DeleteData /> */}
-        <AllCRUD/>
+        {/* <TestData/> */}
+        {/* <UseData/> */}
+        {/* <DeleteData />  */}
+        {/* <AllCRUD/> */}
       </DatasContext.Provider>
     </main>
   );
