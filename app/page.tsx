@@ -1,39 +1,18 @@
 "use client";
-import React, { useState } from "react";
 
-const CreateComponent: React.FC = () => {
-  const [input, setInput] = useState("");
+import React, { useEffect, useState } from "react";
+import CreateData from './comp/CreateData';
+import { DatasContext } from './context/CRUDContext';
+
+
+export default function Home() {
   const [datas, setDatas] = useState<string[]>([]);
-
-  // 입력 양식 변경 핸들러
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.target.value);
-  };
-
-  // 제출 핸들러
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setDatas((prevDatas) => {
-      console.log("이전 데이터", prevDatas);
-      return [input, ...prevDatas];
-    });
-    setInput(""); // 입력 필드 초기화
-  };
-
+  // API 서버로부터 데이터를 가져오는 함수
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="type here"
-        value={input}
-        onChange={handleInputChange}
-      />
-      <button type="submit">submit</button>
-      {datas.map((data, index) => {
-        return <div key={index}>{data}</div>;
-      })}
-    </form>
+    <main>
+      <DatasContext.Provider value={{datas, setDatas}}>
+        <CreateData/>
+      </DatasContext.Provider>
+    </main>
   );
-};
-
-export default CreateComponent;
+}
