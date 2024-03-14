@@ -6,6 +6,8 @@ import CreateData from './comp/CreateData';
 import { DatasContext } from './context/CRUDContext';
 import ReadData from "./comp/ReadData";
 import UseData from "./comp/UseData";
+import DeleteData from "./comp/DeleteData";
+import AllCRUD from './comp/AllCRUD';
 
 
 export default function Home() {
@@ -14,9 +16,11 @@ export default function Home() {
   return (
     <main>
       <DatasContext.Provider value={{datas, setDatas}}>
-        <CreateData/>
+        {/* <CreateData/>
         <ReadData/>
-        {/* <UseData/> */}
+        <UseData/>
+        <DeleteData /> */}
+        <AllCRUD/>
       </DatasContext.Provider>
     </main>
   );
