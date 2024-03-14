@@ -4,16 +4,17 @@ import { DatasContext } from "../context/CRUDContext";
 
 const ReadData: React.FC = () => {
   const [serverData, setServerData] = useState<string[]>([]);
-  const { datas } = useContext(DatasContext);
+  const { datas, setDatas } = useContext(DatasContext);
 
   const fetchData = async () => {
     const response = await fetch('http://localhost:8000/read');
     const data = await response.json();
     setServerData(data);
   };
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [datas, setDatas]);  // `DatasContext`의 값이 변경될 때마다 `fetchData` 함수를 실행
 
   return (
     <>
